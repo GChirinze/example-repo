@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Your Dashboard</h2>
+<p><strong>Role:</strong> {{ profile.role|title }}</p>
+
+<h3>Articles</h3>
+{% for article in articles %}
+<div
+  class="article {% if article.is_approved %}approved{% else %}pending{% endif %}"
+>
+  <h4>{{ article.title }}</h4>
+  <p><strong>Author:</strong> {{ article.author.username }}</p>
+  <p>
+    <strong>Status:</strong>
+    {% if article.is_approved %}Approved{% else %}Pending Approval{% endif %}
+  </p>
+  <p>{{ article.content|truncatewords:20 }}</p>
+
+  {% if profile.role == 'editor' and not article.is_approved %}
+  <a href="{% url 'approve_article' article.id %}">Approve Article</a>
+  {% endif %}
+</div>
+{% empty %}
+<p>No articles available.</p>
+{% endfor %} {% endblock %}

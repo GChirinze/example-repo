@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+<h2>All Published Articles</h2>
+{% for article in articles %}
+<div class="article approved">
+  <h3>{{ article.title }}</h3>
+  <p><strong>By:</strong> {{ article.author.username }}</p>
+  {% if article.publisher %}
+  <p><strong>Publisher:</strong> {{ article.publisher.name }}</p>
+  {% endif %}
+  <p>{{ article.content }}</p>
+  <small>Published: {{ article.created_at|date:"M d, Y" }}</small>
+</div>
+{% empty %}
+<p>No published articles available.</p>
+{% endfor %} {% endblock %}

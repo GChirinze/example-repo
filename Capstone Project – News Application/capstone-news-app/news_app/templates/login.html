@@ -1,0 +1,92 @@
+{% extends 'base.html' %} {% block content %}
+<div
+  style="
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  "
+>
+  <h2 style="text-align: center; margin-bottom: 30px">Login to News App</h2>
+
+  {% if form.errors %}
+  <div
+    style="
+      background: #f8d7da;
+      color: #721c24;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    "
+  >
+    Invalid username or password. Please try again.
+  </div>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    <div style="margin-bottom: 15px">
+      <label style="display: block; margin-bottom: 5px; font-weight: bold"
+        >Username:</label
+      >
+      <input
+        type="text"
+        name="username"
+        required
+        style="
+          width: 100%;
+          padding: 8px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+        "
+      />
+    </div>
+    <div style="margin-bottom: 20px">
+      <label style="display: block; margin-bottom: 5px; font-weight: bold"
+        >Password:</label
+      >
+      <input
+        type="password"
+        name="password"
+        required
+        style="
+          width: 100%;
+          padding: 8px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+        "
+      />
+    </div>
+    <button
+      type="submit"
+      style="
+        width: 100%;
+        background: #007bff;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      "
+    >
+      Login
+    </button>
+  </form>
+
+  <div
+    style="
+      margin-top: 30px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 5px;
+    "
+  >
+    <h4 style="margin-top: 0">Demo Accounts:</h4>
+    <div><strong>Reader:</strong> reader / password123</div>
+    <div><strong>Journalist:</strong> journalist / password123</div>
+    <div><strong>Editor:</strong> editor / password123</div>
+  </div>
+</div>
+{% endblock %}

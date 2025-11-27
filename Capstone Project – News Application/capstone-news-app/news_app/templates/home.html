@@ -1,0 +1,66 @@
+{% extends 'base.html' %} {% block content %}
+<div style="text-align: center; margin-bottom: 30px">
+  <h1>Welcome to Capstone News App</h1>
+  {% if not user.is_authenticated %}
+  <p style="font-size: 18px; color: #666">
+    Please login to access all features
+  </p>
+  <a
+    href="{% url 'login' %}"
+    style="
+      display: inline-block;
+      background: #28a745;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 10px;
+    "
+  >
+    Login Now
+  </a>
+  {% endif %}
+</div>
+
+<h2>Recent Articles</h2>
+{% for article in articles %}
+<div class="article">
+  <h3>{{ article.title }}</h3>
+  <p><strong>By:</strong> {{ article.author.username }}</p>
+  <p>{{ article.content|truncatewords:30 }}</p>
+  <small>Published: {{ article.created_at|date:"M d, Y" }}</small>
+
+  {% if not user.is_authenticated %}
+  <div
+    style="
+      margin-top: 10px;
+      padding: 10px;
+      background: #fff3cd;
+      border-radius: 3px;
+    "
+  >
+    <small
+      ><a href="{% url 'login' %}">Login</a> to read more articles and access
+      your dashboard</small
+    >
+  </div>
+  {% endif %}
+</div>
+{% empty %}
+<div
+  style="
+    text-align: center;
+    padding: 40px;
+    background: #f8f9fa;
+    border-radius: 5px;
+  "
+>
+  <p>No articles available at the moment.</p>
+  {% if not user.is_authenticated %}
+  <p>
+    <a href="{% url 'login' %}">Login as journalist or editor</a> to create
+    articles.
+  </p>
+  {% endif %}
+</div>
+{% endfor %} {% endblock %}

@@ -1,0 +1,16 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/news_env/Scripts/python.exe",
+  "python.terminal.activateEnvironment": true,
+  "files.autoSave": "afterDelay",
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "emmet.includeLanguages": {
+    "django-html": "html"
+  },
+  "files.associations": {
+    "**/*.html": "html",
+    "**/templates/**/*.html": "django-html",
+    "**/templates/**/*": "django-txt",
+    "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+  }
+}
